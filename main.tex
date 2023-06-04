@@ -84,8 +84,8 @@
   {{E}\left(#2\right)}
   {\mathop{E}_{#1}\left(#2\right)} }
 \newcommand{\Var}[2][]{ \ifthenelse{\isempty{#1}}
-  {{Var}\left(#2\right)}
-  {\mathop{{Var}}_{#1}\left(#2\right)} }
+  {{V}\left(#2\right)}
+  {\mathop{{V}}_{#1}\left(#2\right)} }
   
 \newcommand{\Cov}[2][]{ \ifthenelse{\isempty{#1}}
   {{Cov}\left(#2\right)}
@@ -136,7 +136,7 @@
 			{Normal}$(\mu, \sigma^2)$ & \large{$\displaystyle\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$} & $\mu$ & $\sigma^2$ & \Large{$\displaystyle e^{\mu t + \frac{\sigma^2 t^2}{2}}$} \\
 			\rowcolor{gray!15}{Gamma}$(\alpha, \beta)$ & $\displaystyle\frac{1}{\Gamma(\alpha)\beta^\alpha}x^{\alpha-1}e^{-x / \beta}$ & $\alpha\beta$ & $\alpha\beta^2$ & $\displaystyle\left(\frac{1}{1-\beta t}\right)^\alpha, t < \frac{1}{\beta}$ \\
 			{Beta}$(\alpha, \beta)$ & $\displaystyle \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}$ & $\displaystyle \frac{\alpha}{\alpha+\beta}$ & $ \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$ & $1 + \sum_{k=1}^{\infty} \left(\prod_{i=0}^{k-1} \frac{\alpha+i}{\alpha+\beta+i}\right) \frac{t^k}{k!}$ \\
-			\rowcolor{gray!15}{Cauchy}$(\mu, \sigma)$ & $\frac{1}{\pi \sigma}\frac{1}{1+\left(\frac{x-\mu}{\sigma}\right)^2}$ & undefined & undefined & undefined \\
+			\rowcolor{gray!15}{Cauchy} & $1 / \left( \pi (1 + x ^ 2)\right), x \in \mathbb R $ & ($\infty$) & n/a & n/a, $F(x) = \arctan(x)/\pi + 1/2$ \\
 			{$\chi^2_p$} & $\displaystyle \frac{1}{2^{p/2}\Gamma(p/2)}x^{p/2-1}e^{-x/2}$ & $p$ & $2p$ & $(1-2t)^{-p/2}, t < 1/2$ \\
 			%\rowcolor{gray!15}{Student's t}$(\nu)$ & $\frac{\Gamma((\nu+1)/2)}{\sqrt{\nu\pi}\Gamma(\nu/2)}\left(1+\frac{x^2}{\nu}\right)^{-(\nu+1)/2}$ & $0, \nu > 1$ & $ \frac \nu {\nu - 2}, \nu > 2$ & $EX^{n=2k}: \frac {\Gamma((\nu + 1) / 2) \Gamma{\nu - n / 2}} {\sqrt{\pi} \Gamma(\frac \nu 2)} {\nu^{n/2}}$\\
 			\bottomrule
@@ -191,9 +191,15 @@ f_Z(z) = \\
 \end{cases}
 $
 		\newcolumn
-		
-		test 
-
+\section{期望}
+$\mu_X = E(X) =  \int x \d F(x) < \infty$, 称期望存在。 \\
+懒惰统计学家法则 $E(r(X)) = \int r(x) d F_X(x).$ \\
+$k$ 阶矩 $E(X^k)$, 中心矩 $E((X - \mu)^k)$。 \\
+$\sigma ^ 2 = V(X) = E((X - \mu)^2) = E(X^2) - E(X)^2$ \\
+样本 $\bar X = 1/n \sum X_i, S_n^2 = 1/(n-1) \sum (X_i - \bar X)^2$ \\
+定理：$E(\bar X_n) = \mu, V(\bar X_n) = \sigma ^ 2 / n, E(S_n^2) = \sigma^2.$
+$Cov(X, Y) = E((X - \mu_X)(Y - \mu_Y))=E(XY)-E(X)E(Y)$，不相关：$Cov(X_i, X_j) = 0$，此时两者方差可加，但不代表独立（例：$X=U(-1, 1), Y = |X|$）\\
+矩母函数 $\phi_X(t) = E(e^{tX})$。如果 $Y = aX + b$, 则 $\phi_Y(t) = e^{bt} \phi_X(at)$。\\
 		\newcolumn
 		
 		test
