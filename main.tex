@@ -1,27 +1,27 @@
-\documentclass[titlepage, a4paper, landscape]{article}
+\documentclass[a4paper, landscape,10pt]{article}
 
 \usepackage[inner=0.6cm, outer=0.6cm, top=0.6cm, bottom=0.65cm]{geometry}
 
 \usepackage{xeCJK}
 
-\setCJKmainfont{Source Han Serif SC}[Scale=0.8]
-\setCJKmonofont{SimHei}[Scale=0.8]
-\setCJKsansfont{KaiTi}[Scale=0.8]
+\setCJKmainfont{Source Han Serif SC}[Scale=0.775]
+%\setCJKmonofont{SimHei}[Scale=0.5]
+%\setCJKsansfont{KaiTi}[Scale=0.5]
 
-\setmainfont{Linux Libertine O}[Scale=0.925]
-\setmonofont{Consolas}[Scale=0.775]
-%\setsansfont{Gill Sans Medium}
+%\setmainfont{Linux Libertine O}[Scale=0.5]
+%\setmonofont{Consolas}[Scale=0.5]
+%\setsansfont{Gill Sans Medium}[Scale=0.5]
 
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt
 
-\setlength{\parindent}{0em}\setlength{\parskip}{1pt}
-\setlength\itemsep{1pt}
+\setlength{\parindent}{0em}\setlength{\parskip}{0pt}
+\setlength\itemsep{0pt}
 
 \makeatletter
 \renewcommand{\paragraph}{%
   \@startsection{paragraph}{4}%
-  {\z@}{1pt \@plus 1pt \@minus 1pt}{-1em}%
+  {\z@}{0pt \@plus 1pt \@minus 1pt}{-1em}%
   {\normalfont\normalsize\bfseries}%
 }
 \makeatother
@@ -106,6 +106,7 @@
 \titlespacing{\subsubsection}{0pt}{0pt}{0pt}
 
 \begin{document}
+	\small
 	\begin{multicols}{2}
 		\begin{tabular}{lllll}
 			\multicolumn{5}{l}{{\Large{基础数理统计 2023 Spring}}} \\
@@ -149,13 +150,14 @@
 	$(uv)' = uv' + u'v$ \\
 	$ ({u \over v})' = {u'v - uv' \over v^2 } $ \\
 	\begin{scriptsize}
-		$ \int uv'\d x = uv - \int u' v \d x$ \\
-	\end{scriptsize}
+	$ \int uv'\d x = uv - \int u' v \d x$ \\
+	$ (f(g(x)))' = f'(g(x)) g'(x) $ \\
+\end{scriptsize}
 	$ (a^x)' = (\ln a) a^x $ \\
-	$ (\tan x)' = \sec^2 x $ \\
-	$ (\cot x)' = \csc^2 x $ \\
-	$ (\sec x)' = \tan x\, \sec x $ \\
-	$ (\csc x)' = - \cot x\, \csc x $ \\
+	% $ (\tan x)' = \sec^2 x $ \\
+	% $ (\cot x)' = \csc^2 x $ \\
+	% $ (\sec x)' = \tan x\, \sec x $ \\
+	% $ (\csc x)' = - \cot x\, \csc x $ \\
 	$ (\arcsin x)' = {1 \over \sqrt{1-x^2}} $ \\
 	$ (\arccos x)' = -{1 \over \sqrt{1-x^2}} $ \\
 	$ (\arctan x)' = {1 \over 1+x^2} $ \\
@@ -214,11 +216,11 @@ $P(T>2)=P(X=0)=e^{-4}.$ 推广, 等待时间 $F(t) = 1 - e^{-\lambda t}, f(t) = 
 二维正态分布: 
 $f(x, y) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\cdot \exp$ $ \left(-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_1)^2}{\sigma_1^2}+\frac{(y-\mu_2)^2}{\sigma_2^2}-\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}\right]\right)$
 边际分布: $f_X(x)=\int_{-\infty}^{+\infty}f(x,y)\d y$\\
-
-\newcolumn
 独立定义 $P(X\in A,Y \in B) = P(X \in A)P(Y \in B)$,
 $f_{X,Y}(x,y)=f_X(x)f_Y(y)$, 独立iff $\forall x, y, f(x, y) = r(x)g(y), f_X(x)=r(x)/\int_{-\infty}^{\infty} r(x) \d x$\\
 条件分布 $f_{X|Y}(x|y)= \frac{P(X = x, Y = y)}{P(Y = y)}=\frac{f_{X,Y}(x,y)}{f_Y(y)}$\\
+
+\newcolumn
 多项分布: $P(\dots,X_k=n_k)=\frac{n!}{n_1!\dots n_k!}p_1^{n_1}\dots p_k^{n_k}$\\
 多元正态分布: $f(x_1, \dots,x_n)=\frac{1}{(2\pi)^{n/2}|\Sigma|^{1/2}}\exp$ $\left(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right)$\\
 随机变量的函数: 对于随机变量 $X$ 考虑函数形式 $r(x)$, 计算 $Y=r(X)$ 的分布: 
@@ -239,8 +241,6 @@ f_Z(z) = \\
 0, \quad \text{otherwise}
 \end{cases}
 $
-\newcolumn
-
 \section{期望}
 $\mu_X = E(X) =  \int x \d F(x) < \infty$, 称期望存在.  \\
 懒惰统计学家法则 $E(r(X)) = \int r(x) d F_X(x).$ \\
@@ -249,6 +249,9 @@ $\sigma ^ 2 = V(X) = E((X - \mu)^2) = E(X^2) - E(X)^2$ \\
 样本 $\overline X = 1/n \sum X_i, S_n^2 = 1/(n-1) \sum (X_i - \overline X)^2$ \\
 定理: $E(\overline X_n) = \mu, V(\overline X_n) = \sigma ^ 2 / n, E(S_n^2) = \sigma^2.$
 $Cov(X, Y) = E((X - \mu_X)(Y - \mu_Y))=E(XY)-E(X)E(Y)$, 不相关: $Cov(X_i, X_j) = 0$, 此时两者方差可加, 但不代表独立（例: $X=U(-1, 1), Y = |X|$）\\
+
+\newcolumn
+
 矩母函数 $M_X(t) = E(e^{tX})$. 如果 $Y = aX + b$, 则 $M_Y(t) = e^{bt} M_X(at)$. 
 意义: $E(X ^ n) = M_X^{(n)} (0)$. \\
 例: $X\sim \mathrm{Exp}(\lambda), E(X) = M_X'(0) = {\lambda \over (\lambda - t) ^ 2} |_{t = 0} = \frac 1 \lambda$, $E(X^2) = M_X^{(2)}(0)  = \frac {2 \lambda} {(\lambda - t) ^ 3} |_{t = 0} = \frac {2} {\lambda^2}.$
@@ -266,8 +269,6 @@ $P(|\overline X_n - p| > \epsilon) \leq 2 \exp \left( - {2n\epsilon^2} \right)$ 
 % $\Pr{X \geq (1 - \delta)\mu} \leq \exp \left( - \frac {\delta ^ 2} {2} \mu \right)$\\
 Cauchy-Schwartz $E(XY) \leq \sqrt {E(X^2)E(Y^2)}$ \\
 Jensen $E(g(X)) \geq g(E(X))$, $g$ 上凸. \\
-
-\newcolumn
 \section{随机变量的收敛}
 概率 $X_n \xrightarrow{P} X: P(|X_n - X| \geq \varepsilon) \rightarrow 0$, as $n \rightarrow \infty$.\\
 分布 $X_n \rightsquigarrow X: F_{X_n}(x) \rightarrow F_X(x)$, $\forall x \in $ 连续点.\\
@@ -280,7 +281,9 @@ Jensen $E(g(X)) \geq g(E(X))$, $g$ 上凸. \\
 3. $g(X_n)\rightarrow g(X) : (P, \rightsquigarrow)$
 4. (Slutzky) $X_n \rightsquigarrow X, Y_n \rightsquigarrow c: X_n + Y_n \rightsquigarrow X + c, X_n  Y_n \rightsquigarrow cX$.\\
 注: 通常 $X_n \rightsquigarrow X, Y_n \rightsquigarrow Y \nRightarrow X_n + Y_n \rightsquigarrow X + Y$. \\
-条件: $\{X_i\}$ i.i.d., $\mu, \sigma^2$ 存在, $\overline X_N = \frac 1 n \sum_{i = 1}^n X_i$
+
+\newcolumn
+$\{X_i\}$ i.i.d., $\mu, \sigma^2$ 存在, $\overline X_N = \frac 1 n \sum_{i = 1}^n X_i$ \\
 弱 LLN: $\overline X_n \xrightarrow{P} \mu : \lim_{n \rightarrow \infty} P(|\overline X_n - \mu| \leq \varepsilon) = 1$ \\
 强 LLN: $\overline X_n \xrightarrow{a.s.} \mu : P(\lim_{n \rightarrow \infty} |\overline X_n - \mu| \leq \varepsilon) = 1$\\
 CLT: $Z_n \equiv \frac{\sqrt{n} (\overline X_n - \mu)}{\sigma} \rightsquigarrow N(0, 1)$, i.e., \\
@@ -289,15 +292,11 @@ $\lim_{n \rightarrow \infty} P(Z_n \leq z) = \Phi(z) = \frac{1}{\sqrt{2\pi}} \in
 样本 $S_n^2 = (n - 1)^{-1}\sum(X_i - \overline X_n)^2$, CLT $\sigma$ 换为 $S_n$.\\
 Delta 方法: 求极限分布 \\
 $Y_n \sim N(\mu, \frac{\sigma ^ 2}{n}) \Rightarrow g(Y_n) \sim N(g(\mu), (g'(\mu))^2 \frac {\sigma ^ 2} {n} )$
-
-\end{multicols}
-\newpage
-\begin{multicols}{4}
 \section{模型、统计推断与学习}
 参数模型: $\mathcal{F}=\{f(x, \theta) : \theta \in \Theta\}$, 如正态 $\theta = (\mu, \sigma)$\\
 非参数模型: 无法用有限参数表示, 回归/聚类/决策树等\\
 统计量: 完全基于样本所得的量, 是样本的函数. \\
-点估计: $\hat \theta = g(X_1, \dots, X_n)$. \\
+点估计: $\hat \theta = g(X_1, \dots, X_n)$. 
 偏差 $\mathrm{bias}(\hat \theta_n) = E_\theta(\hat \theta_n) - \theta$. \\
 无偏: $\mathrm{bias} = 0$; 相合: $\hat \theta_n \xrightarrow{P} \theta$. \\
 标准误差 $\mathrm{se}(\hat \theta_n) = \sqrt{V(\hat \theta_n)}$; \\
@@ -307,10 +306,15 @@ MSE $ = E_\theta(\hat \theta_n - \theta)^2 = \mathrm{bias}^2 + \mathrm{se}^2$. \
 置信集: 置信区间 $C_n = (a_n, b_n)$, $P_\theta(\theta \in C_n) = 1 - \alpha$. \\
 注: 置信区间是随机区间, 意思是给定若干组样本, 每组得到的置信区间覆盖真实参数的概率为 $1 - \alpha$. \\
 基于正态的置信区间: $\hat \theta_n \pm z_{\alpha/2} \mathrm{se}(\hat \theta_n)$. \\
-$z_{\alpha/2} = \Phi^{-1}(1 - \alpha / 2)$. $z_{0.05/2} = 1.96, z_{0.1/2} = 1.65, z_{0.025/2} = 2.24, z_{0.01/2}=2.58, z_{0.005/2}=2.80$. \\
 例: $\{X_n\} \sim \mathrm{Bernoulli}(p)$, 
 由 Chebyshev $P(|\overline X_n - p| \geq \epsilon) \leq 2 \exp(-2n\varepsilon^2)$, 令 $\alpha= 2\exp(-2n\varepsilon) \Rightarrow \varepsilon ^ 2 = \log(2/a)/(2n)$, 因此 $C_n = (\overline X_n - \sqrt{\log(2/a)/(2n)}, \overline X_n + \sqrt{\log(2/a)/(2n)})$;
-由渐进正态, $C_n = (\overline X_n - z_{\alpha/2} \sqrt{\overline X_n(1 - \overline X_n)/n}, \overline X_n + z_{\alpha/2} \sqrt{\overline X_n(1 - \overline X_n)/n})$. \\
+由渐进正态, $C_n =(\overline X_n - z_{\alpha/2} \sqrt{\overline X_n(1 - \overline X_n)/n}, \overline X_n + z_{\alpha/2} \sqrt{\overline X_n(1 - \overline X_n)/n})$. \\
+
+\end{multicols}
+\newpage
+\begin{multicols}{4}
+
+$z_{\alpha/2} = \Phi^{-1}(1 - \alpha / 2)$. $z_{0.05/2} = 1.96, z_{0.1/2} = 1.65, z_{0.025/2} = 2.24, z_{0.01/2}=2.58, z_{0.005/2}=2.80$. \\
 假设检验: $H_0: \theta \in \Theta_0, H_1: \theta \in \Theta_1$. 一般把可以否定, 且可根据其构建分布机制的命题作为原假设. \\
 显著性水平: 小概率事件发生的概率 $\alpha$; \\
 临界值: $C$, 使得 $P_\theta(\text{拒绝 $H_0$, 如 $|\overline X - \mu| > C$}) = \alpha$.\\
@@ -325,12 +329,10 @@ $F \in (0,$ $1): \sqrt{n} (\hat F_n(x) - F(x)) \rightsquigarrow N(0, F(x)(1 - F(
 满足 $T(aF + bG) = aT(F) + bT(G)$, 嵌入式估计量: $T(\hat F_n) = \int_{-\infty}^{+\infty} r(x) \d \hat F_n(x)$ $= \frac{1}{n} \sum_{i = 1}^n r(X_i)$,\\
 近似 $1-\alpha$ 置信区间为 $T(\hat F_n) \pm z_{\alpha/2} \hat {\mathrm{se}}$.\\
 例: $\hat \mu = \overline X_n, \hat \sigma^2 = \frac{1}{n} \sum_{i = 1}^n X_i^2 - \overline X_n^2$. \\
-
-\newcolumn
 \section{Bootstrap 方法}
 从 $\hat F_n$ 中生成 $X_1^*, \dots, X_n^*$ 计算统计量, 重复 $B$ 次. \\
 方差估计:  $V_{\mathrm{boot}} = \frac{1}{B} \sum_{b = 1}^B (T_{n,b}^* - \overline T^*)^2$\\
-正态区间法 $T_n \pm z_{\alpha/2} \sqrt{V_{\mathrm{boot}}}$ 的置信区间, 除非接近正态否则不准确. \\
+正态区间法 $T_n \pm z_{\alpha/2} \sqrt{V_{\mathrm{boot}}}$ , 除非接近正态否则不准确. \\
 枢轴量法: 定义 $R_n = \hat \theta - \theta$, $\hat \theta_{n,1 \dots B }^*$ 为副本, \\
 $\theta_\beta^*$ 为 $\beta$ 分位数, $C_n = (2 \hat \theta_n - \theta_{1 -\alpha / 2}^*, 2 \hat \theta_n - \theta_{\alpha / 2}^*)$\\
 分位数置信区间: $(\theta_{\alpha/2}^*, \theta_{1 - \alpha/2}^*)$ \\
@@ -351,9 +353,10 @@ $\hat \theta_n = - \frac{n}{\sum \log X_i}$.\\
 KL 距离: $D(P, Q) = \int p(x) \log \frac{p(x)}{q(x)} \d x$, $D(f, g)\geq 0, D(f, g) = 0 \Leftrightarrow f = g$.\\
 模型可识别: $\theta \neq \phi \Rightarrow D(\theta, \phi) > 0$\\
 极大似然估计的同变性: $\tau = g(\theta), \hat \tau_n = g(\hat \theta_n)$\\
-记分函数 $s(X; \theta) = \frac {\partial \log f(X; \theta)} {\partial \theta}$,
-Fisher 信息量 $I_n(\theta) = V_\theta\left( \sum_{i=1}^n s(X_i; \theta) \right) = \sum_{i = 1}^n V_\theta(s(X_i; \theta))$,\\
+Fisher $I_n(\theta) = V_\theta\left( \sum s(X_i; \theta) \right) = \sum V_\theta(s(X_i; \theta)) = E(s^2(X; \theta)) = n E(s(x_i; \theta))$, $s(X; \theta) = \frac {\partial \log f(X; \theta)} {\partial \theta}$\\
 渐进正态性: 令 $\mathrm{se} = \sqrt{V(\hat \theta_n)}$, 适当正则条件下 \\
+
+\newcolumn
 1. $\mathrm{se} \approx \sqrt{1 / I_n(\theta)}, \frac{\hat \theta_n - \theta}{\mathrm{se}} \rightsquigarrow N(0, 1)$, \\
 2. $\hat {\mathrm{se}} = \sqrt{1 / I_n(\hat \theta_n)}, \frac{\hat \theta_n - \theta}{\hat {\mathrm{se}}} \rightsquigarrow N(0, 1)$\\
 3. $C_n = \hat \theta_n \pm z_{\alpha/2} \hat {\mathrm{se}}, P_\theta(\theta \in C_n) \rightarrow 1 - \alpha$\\
@@ -362,43 +365,65 @@ $f(X; \theta) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left( - \frac{(X - \theta)^2
 记分函数 $s(X; \theta) = \frac{\partial \log f(X; \theta)}{\partial \theta} = \frac{X - \theta}{\sigma^2}$,
 $I_n(\theta) = $ $n E(s^2(X; \theta)) = -n E_\theta(s'(X; \theta)) = -n E_\theta(-\frac 1 {\sigma^2}) = \frac {n} {\sigma^2}$,
 $\hat {\mathrm{se}} = \sqrt{\frac{\sigma^2}{n}}$, 故 $\overline X$ 近似服从 $N(\theta, \sigma^2 / n)$. \\
-例: $\mathrm{Poisson}(\lambda)$,
-$f(X; \lambda) = \frac{\lambda^x}{x!} e^{-\lambda}$,\\
-$s(X; \lambda) = \frac{\partial \log f(X; \lambda)}{\partial \lambda} = \frac{X - \lambda}{\lambda}$,\\
-$I_n(\lambda) = n I(\lambda) = n E(s^2(X; \lambda)) = \frac{n}{\lambda}$, $\hat {\mathrm{se}} = \sqrt{\frac{\lambda}{n}}$, \\
-$\overline X$ 近似服从 $N(\lambda, \lambda / n)$,
-另 $\hat{\mathrm{se}} = \sqrt{1 / I_n (\hat \lambda)} = \sqrt{\frac {\hat \lambda} {n}}$, $1 - \alpha$ 置信区间为 $\hat \lambda \pm z_{\alpha/2} \sqrt{\frac {\hat \lambda} {n}}$. \\
-
-\newcolumn
 极大似然估计 Delta 方法: 如果 $\tau = g(\theta), g'(\theta) \neq 0$, 则 $\frac {\hat \tau_n - \tau} {\hat {\mathrm{se}}(\hat \tau_n)} \rightsquigarrow N(0, 1)$,
 其中 $\hat \tau_n = g(\hat \theta_n)$, 且 $\hat {\mathrm{se}}(\hat \tau_n) = \sqrt{V(\hat \tau_n)} = |g'(\hat \theta_n)| \hat {\mathrm{se}}(\hat \theta_n)$. \\
-多参数模型: $\mathbf{\theta} = (\theta_1, \dots, \theta_k)^T$ \\
-Fisher 信息矩阵 $I_n(\mathbf{\theta}) = (E_{\mathbf{\theta}}(H_{ij}))$,
+
+例: $\mathrm{Poisson}(\lambda)$, 矩估计: $\hat \lambda = \overline X_n$,
+$f(X; \lambda) = \frac{\lambda^x}{x!} e^{-\lambda}$,
+$\mathcal{L}_n = \prod \frac{\lambda^{X_i}e^{-\lambda}}{(X_i)!}$, $\ell_n = \sum (X_i \log \lambda - \lambda - \log (X_i)!$), $\partial = 0$ 得 $\overline X$.
+$s(X; \lambda) = \frac{\partial \log f(X; \lambda)}{\partial \lambda} = \frac{X - \lambda}{\lambda}$,
+$I_n(\lambda) = n I(\lambda) = n E(s^2(X; \lambda)) = \frac{n}{\lambda}$, $\hat {\mathrm{se}} = \sqrt{\frac{\lambda}{n}}$, 
+$\overline X$ 近似服从 $N(\lambda, \lambda / n)$,
+$1 - \alpha$ 置信区间为 $\hat \lambda \pm z_{\alpha/2} \sqrt{\frac {\hat \lambda} {n}}$. \\
+例: $N(\theta, 1)$, $Y_i = I(X_i > 0)$,$\psi = P(Y_1 = 1)$.
+$\mathcal{L}_n(\theta) = \prod \frac{1}{\sqrt{2\pi}} e^{-\frac{(X_i - \theta)^2}{2}}$,
+$\ell_n(\theta) = -\frac{n}{2} \log 2\pi - \frac{1}{2} \sum (X_i - \theta)^2$,
+$\partial \ell_n(\theta) / \partial \theta = \sum (x_i - \theta), = 0 : \hat \theta = \overline X$.
+$I_n(\theta) = n E_\theta(s^2(X_i; \theta)) = n$,
+$\hat{\mathrm{se}}(\hat \theta) = \frac{1}{\sqrt{I_n(\hat \theta)}} = \frac{1}{\sqrt{n}}$,
+$\psi = \Phi(\theta)$, $\hat \psi = \Phi(\hat \theta) = \Phi(\overline X)$,
+$\hat{\mathrm{se}}(\hat \psi) = |\Phi'(\hat \theta)| \hat{\mathrm{se}}(\hat \theta) = \phi(\hat \theta) \hat{\mathrm{se}}(\hat \theta)$.\\
+$\tilde \psi = 1/n \sum Y = E[\overline Y] \xrightarrow{P} E[Y] = \psi$, 渐进效率 $V(\tilde \psi) / V(\hat \psi) = \psi (1 - \psi) / \phi(\theta) = \Phi(\theta) (1 - \Phi(\theta)) / \phi(\theta)$. 
+非正态: 由 LLN $\hat \psi \xrightarrow{P} \Phi(\mu)$, $F_X(0) \neq 1 - \Phi(\mu)$ 都不相合. \\
+例: $X_1 \sim \mathrm{Binomial}(n_1, p_1), X_2 \sim \mathrm{Binomial}(n_2, p_2), \psi = p_1 - p_2$,
+$f(X_i; p_i) = \binom{n_i}{X_i} p_i^{X_i} (1 - p_i)^{n_i - X_i}$,
+$\frac {\partial} {\partial p_i} s(X_i; p_i) = \frac {X_i} {p_i} + \frac {X_i} {1 - p_i} = \frac {X_i - n p_i } {p_i (1 - p_i)}$
+$\hat p_i = X_i / n_i, \hat \psi = \hat p_1 - \hat p_2 = X_1/n_1 - X_2 / n_2$.
+\begin{tiny}
+$I(p_1, p_2) = (\partial ^ 2 \log f((X_1, X_2); \psi) / \partial p_i \partial p_j) = \begin{bmatrix}
+	\frac{n_1}{p_1(1 - p_1)} & 0\\
+	0 & \frac{n_2}{p_2(1 - p_2)}
+	\end{bmatrix}. $
+\end{tiny} \\
+多参: $\mathbf{\theta} = (\theta_1, \dots, \theta_k)^T$ 
+Fisher 信息矩阵 $I_n(\mathbf{\theta}) = $ $(E_{\mathbf{\theta}}(H_{ij}))$,
 $ H_{ij} = \frac{\partial \log f(X; \mathbf{\theta})}{\partial \theta_i \partial \theta_j}$,
 $J_n(\mathbf{\theta}) = I_n^{-1}(\mathbf{\theta})$\\
 多参数 Delta 方法: $\nabla g = (\frac{\partial g}{\partial \theta_1}, \dots)^T$ 在 $\hat \theta_n$ 处不为 $0$, 令 $\hat \tau_n = g(\hat \theta_n)$, 则
 $\frac {\hat \tau_n - \tau} {\sqrt{\hat \tau_n^T J_n(\hat \theta_n) \hat \tau_n}} \rightsquigarrow N(0, 1)$,
 其中 $\hat {\mathrm{se}}(\hat \tau_n) = \sqrt{(\nabla g |_{\theta = \hat \theta_n}^T) J_n(\hat \theta_n) (\nabla g |_{\theta = \hat \theta_n})}$. \\
-例: $X_1\dots X_n N(\mu, \sigma^2)$, 估计 $\psi = g(\mu, \sigma) = \sigma / \mu$,
-$(\mu, \sigma ^ 2)$ 的极大似然估计为 $(\overline X, S^2)$,
-Fisher 信息矩阵为 $I_n(\mu, \sigma^2) = \begin{pmatrix}
+例: $X_1\dots X_n \sim N(\mu, \sigma^2)$, $\psi = g(\mu, \sigma) = \sigma / \mu$,
+$(\mu, \sigma ^ 2)$ MLE: $(\overline X, S^2)$,\begin{scriptsize}
+$I_n(\mu, \sigma^2) = \begin{pmatrix}
 	n / \sigma^2 & 0 \\
 	0 & 2n / \sigma^2
 \end{pmatrix}$,$J_n = \begin{pmatrix}
 	\sigma^2 / n & 0 \\
 	0 & \sigma^2 / 2n
-\end{pmatrix}$, $\nabla g = (\frac{\partial g}{\partial \mu}, \frac{\partial g}{\partial \sigma})^T = (-\frac{\sigma}{\mu^2}, \frac{1}{\mu})^T$,
-$\hat {\mathrm{se}}(\hat \tau) = \frac 1 {\sqrt n} \sqrt{\frac {\hat \sigma ^ 4} {\hat \mu^4} + \frac {\hat \sigma^2} {2 \hat \mu^2}}$. \\
+\end{pmatrix}$, $\nabla g = (-\frac{\sigma}{\mu^2}, \frac{1}{\mu})^T$,
+$\hat {\mathrm{se}}(\hat \tau) = \frac 1 {\sqrt n} \sqrt{\frac {\hat \sigma ^ 4} {\hat \mu^4} + \frac {\hat \sigma^2} {2 \hat \mu^2}}$.
+\end{scriptsize} \\
+
+\newcolumn
 
 \section{假设检验与 $p$ 值}
 检验统计量: $T_n = T(X_1, \dots, X_n)$, \\
 拒绝域 $\mathcal{A} = \{T_n > c\}$, $c$ 为临界值. \\
 第一类错误: 假阳性；第二类错误: 假阴性. \\
 势函数 $\beta(\theta) = P_\theta(X\in \mathcal{A})$, 容度 $\beta = \sup_{\theta \in \Theta_1} \beta(\theta)$\\
-检验容度 $\leq \alpha$ 称检验水平为 $\alpha$. \\
-简单假设 $\theta = \theta_0$ 复合假设 $\theta > \theta_0$ \\
-双边检验 $H_0 : \theta = \theta_0$ vs $H_1 : \theta \neq \theta_0$\\
-单边检验 $H_0 : \theta \geq \theta_0$ vs $H_1 : \theta < \theta_0$\\
+容度 $\leq \alpha$ 称检验水平为 $\alpha$. 简单 $\theta = \theta_0$ 复合 $\theta \geq \theta_0$ \\
+双边 $H_0 : \theta = \theta_0$ vs \dots
+单边 $H_0 : \theta \geq \theta_0$ vs \dots\\
 例: $X_1 \dots X_n \sim N(\mu, \sigma^2)$, 检验 $H_0 : \mu = \mu_0$ vs $H_1 : \mu \neq \mu_0$,
 检验统计量 $T_n = \sqrt{n} \frac{|\overline X_n - \mu_0|}{S_n}$, \\
 拒绝域 $\{T_n > z_{\alpha/2}\}$,
@@ -409,7 +434,9 @@ $\hat {\mathrm{se}}(\hat \tau) = \frac 1 {\sqrt n} \sqrt{\frac {\hat \sigma ^ 4}
 检验水平 $\alpha = \sup_{\mu \leq \mu_0} \beta(\mu) = 1 - \Phi(\sqrt{n} \frac {c - \mu_0} {\sigma})$,
 设定显著性水平 $\alpha$, $c=\mu_0 + \frac{\sigma}{\sqrt{n}} z_{\alpha / 2}$. \\
 Wald 检验: $H_0: \theta = \theta_0$ vs $H_1: \theta \neq \theta_0$,
-若 $\hat \theta$ 渐进正态, $W = \frac{\hat \theta - \theta_0}{\hat {\mathrm{se}}(\hat \theta)}$, 当 $|W| > z_{\alpha / 2}$ 时拒绝 $H_0$. 势函数: $\beta(\theta_*)\approx
+若 $\hat \theta$ 渐进正态, $W = \frac{\hat \theta - \theta_0}{\hat {\mathrm{se}}(\hat \theta)}$, 当 $|W| > z_{\alpha / 2}$ 时拒绝 $H_0$. 势函数: 
+
+$\beta(\theta_*)\approx
 1 - \Phi(z_{\alpha / 2} + \frac{\theta_0 - \theta_*}{\hat {\mathrm{se}}(\hat \theta)})
 +\Phi(-z_{\alpha / 2} + \frac{\theta_0 - \theta_*}{\hat {\mathrm{se}}(\hat \theta)})$\\
 例: 给定样本 $\{X_m\}, \{Y_n\}$, 检验均值是否相等. \\
@@ -418,9 +445,6 @@ $V(\hat \theta) = V(\overline X - \overline Y) = \frac{\sigma_X^2}{m} + \frac{\s
 $\hat {\mathrm{se}} = \sqrt{\frac{S_X^2}{m} + \frac{S_Y^2}{n}}$, \\
 拒绝域为
 $|\overline X - \overline Y| > z_{\alpha / 2} \hat {\mathrm{se}}$, \\
-
-\newcolumn
-
 例：给定样本 $\{(X_n, Y_n)\}$ 检验均值是否相等. \\
 $H_0: \mu_X = \mu_Y$ vs $H_1: \mu_X \neq \mu_Y$, 构造 $\theta = \mu_1 - \mu_2$, \\
 估计为 $\hat \theta = \overline X - \overline Y$.
@@ -428,11 +452,41 @@ $H_0: \mu_X = \mu_Y$ vs $H_1: \mu_X \neq \mu_Y$, 构造 $\theta = \mu_1 - \mu_2$
 $\hat{\mathrm{se}} = \sqrt{S^2/n}$, 拒绝域为 $|\overline X - \overline Y| > z_{\alpha / 2} \hat {\mathrm{se}}$. \\
 Wald 置信区间: $C = \left(\hat \theta - z_{\alpha / 2} \hat {\mathrm{se}}(\hat \theta), \hat \theta + z_{\alpha / 2} \hat {\mathrm{se}}(\hat \theta)\right)$, \\
 p 值: $\inf \{\alpha : \theta_0 \in C\}$, 可以拒绝 $H_0$ 的最小检验水平. \\
-例: 计算出了 $W = \left| \frac{\overline X - \overline Y}{\hat {\mathrm{se}}}\right|$, 则 p 值为 $P(|Z| > W)$，其中 $Z\sim N(0, 1)$.
+例: 计算出了 $W = \left| \frac{\overline X - \overline Y}{\hat {\mathrm{se}}}\right|$, p 值: $P(|Z| > W)$\begin{tiny}($Z\sim N(0, 1)$)\end{tiny} \\
 
+\newcolumn
+
+Pearson $\chi^2$ 统计量: $X= (X_1, \dots, X_k)$ 服从多项分布 $M(n, p=(p_1, \dots, p_k))$,
+检验 $H_{0/1}: p ?= p_0$. \\
+检验统计量 $\chi^2 = \sum_{i = 1}^k \frac{(X_i - np_{0i})^2}{np_{0i}} = \sum_{i=1}^k \frac{(X_j - E_j)^2}{E_j}$.
+在 $H_0$ 下 $T \rightsquigarrow \chi^2_{k - 1}$, 拒绝域为 $\{T > \chi^2_{\alpha}(k - 1)\}$,\\
+p 值为 $P(\chi^2(k - 1) > T)$. \\
+置换检验: 检验分布是否相同, shuffle 看统计量分位数\\
+似然比检验: $H_0: \theta \in \Theta_0$ vs $H_1: \theta \notin \Theta_0$, $\lambda = 2\log\left( \frac {L(\hat \theta)} {L(\hat {\theta_0})}\right)$,
+$\hat \theta_0$ 表示限制 $\Theta_0$.
+$\lambda \rightsquigarrow \chi^2_{\dim \Theta - \dim \Theta_0}$, 拒绝域 $\{\lambda > \chi^2_{\alpha}(\dim \Theta - \dim \Theta_0)\}$,
+p 值 $P(\chi^2(\dots) > \lambda)$. \\
+例: 豌豆实验自由度为 $3-0$ 而非 $4$, 因为概率和为 $1$. \\
+多重假设检验: Bonferroni: $\alpha / m$ (Union bound).
+BH: 排序后 $p_i \leq \frac{i \alpha}{m C_m} $, $C_m$ 不独立 $\sum_{i = 1}^m \frac{1}{i}$, 独立 $1$. \\
 \setcounter{section}{12}
 \section{线性回归和 Logistic 回归}
-
+简单线性回归: $Y = \beta_0 + \beta_1 X + \epsilon$, $\epsilon : E=0, V=\sigma^2$,
+$\hat y_i = \hat \beta_0 + \hat \beta_1 x, \hat \epsilon = y_i - \hat y_i$.\\
+最小二乘: 使 $\mathrm{RSS} = \sum \hat \epsilon_i^2$ 最小, $E(\mathrm{RSS}) = (n - 2)\sigma^2$ \\
+$\ell_{xy}= \sum (x_i - \overline x)(y_i - \overline y) = \sum x_i y_i - n \overline x \overline y$, \\
+$\ell_{xx} = \sum (x_i - \overline x)^2 = \sum x_i^2 - n \overline x^2$, \\
+$\hat \beta_1 = \ell_{xy} / \ell_{xx}$, $\hat \beta_0 = \overline y - \hat \beta_1 \overline x$, $\hat \sigma ^ 2$ 无偏估计为 $\frac{1}{n - 2} \mathrm{RSS}$. \\
+若 $\epsilon_i | x_i \sim N(0, \sigma^2)$, 则 \\
+$L(\beta_0, \beta_1, \sigma^2) \propto \sigma^{-n} \exp \left( - \frac{1}{2\sigma^2} \sum (y_i - \beta_0 - \beta_1 x_i)^2 \right)$,
+$\ell(\beta_0, \beta_1, \sigma^2) \propto -n \log \sigma - \frac{1}{2\sigma^2} \sum (y_i - \beta_0 - \beta_1 x_i)^2$.
+正态性假设下, 最小二乘即极大似然. $\hat \sigma^2 = 1/n \sum \hat \epsilon_i^2$.
+$\hat {\mathrm{se}}(\hat \beta_1) = \sqrt{\frac{\hat \sigma^2}{\ell_{xx}}}$,
+$\hat {\mathrm{se}}(\hat \beta_0) = \hat {\mathrm{se}}(\hat \beta_1) \sqrt{\frac{1}{n} \sum x_i^2}$,
+适当条件下, 相合, 渐进正态 ($\frac{\hat \beta_i - \beta_i}{\hat{\mathrm{se}}(\hat\beta_i)}) \rightsquigarrow N(0, 1)$,
+渐进置信区间 $\hat \beta_i \pm z_{\alpha/2} \hat{\mathrm{se}}(\hat\beta_i)$, Wald 检验 $W=\hat \beta_1 / \hat{\mathrm{se}}(\hat\beta_1)$. \\
+近似预测区间: $\hat \xi_n^2 = \hat \sigma^2 \left( \frac{1}{n} + \frac{(x_0 - \overline x)^2}{\ell_{xx}} \right)$, $\hat y_* \pm z_{\alpha/2} \hat \xi_n$. \\
+Logistic 回归: 分类问题损失函数不连续, 接一个 Sigmoid 函数 (Logistic) $g(x) = \frac{1}{1 + e^{-x}}$. 没有显式解. \\
 \end{multicols}
 	
 \end{document}
