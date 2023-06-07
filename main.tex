@@ -41,6 +41,7 @@
 \usepackage{cleveref}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{tabularx}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -197,9 +198,9 @@
 条件概率 $P(A|B)=P(AB)/P(B)$\\
 全概率 $P(B)=\sum_{i}P(B|A_i)P(A_i)$\\
 贝叶斯 $P(A_i |B) = \frac{P(B|A_i)P(A_i)}{\sum_j P(B|A_j)P(A_j)}$\\
-作业: 蓝眼 $1/4$. 对于三个孩子的家庭, 如果至少有一个孩子是蓝眼睛(A), 至少有两个蓝眼睛(B)的概率为
+{\bfseries 例}蓝眼 $1/4$. 对于三个孩子的家庭, 如果至少有一个孩子是蓝眼睛(A), 至少有两个蓝眼睛(B)的概率为
 $P(B|A)=P(AB)/P(A)=P(B)/P(A)=10/37.$\\
-作业: $p_{1\dots5} = 0,\frac 1 4,\frac 1 2,\frac 3 4, 1$ 代表第 $i$ 枚硬币出现正面的概率. 
+{\bfseries 例}$p_{1\dots5} = 0,\frac 1 4,\frac 1 2,\frac 3 4, 1$ 代表第 $i$ 枚硬币出现正面的概率. 
 随机选取一枚硬币, 投掷直到出现正面. 求 $\Pr{C_i \mid B_4}$, $B_4$ 表示第 4 次首次出现正面. 
 由贝叶斯, 
 $\Pr{C_i | B_4} = $ $\frac {\Pr{B_4 | C_i} \Pr{C_i}} {\sum_{i \in [5]} \Pr{B_4 | C_i} \Pr{C_i}} = \frac {\Pr{B_4 | C_i}} {\sum_{i \in [5]} \Pr{B_4 | C_i}}.$
@@ -226,8 +227,8 @@ $f_{X,Y}(x,y)=f_X(x)f_Y(y)$, 独立iff $\forall x, y, f(x, y) = r(x)g(y), f_X(x)
 随机变量的函数: 对于随机变量 $X$ 考虑函数形式 $r(x)$, 计算 $Y=r(X)$ 的分布: 
 对每个 $y$ 求集合 $A_y = \{x : r(x) \leq y\}$；
 求 CDF: $F_{r(X)}(y) = \Pr{r(X) \leq y} = \Pr{X \in A_y} = \int_{A_y} f_X(x) \d x$；求 PDF: $f_Y(y) =  F_Y'(y)$. 当 $r$ 单调时, $r$ 的反函数为 $s = r^{-1}$, 有 $f_Y(y) = f_X(s(y)) \left|\frac{\d s(y)}{\d y}\right|$. \\
-例: $f_X(x) = e ^ {-x} (x > 0)$, $F_X(x) = \int_{0}^{x} f_X(s)\d s = 1 - e ^ {-x}$. 令 $Y = r(X) = \log X, A_y = \{x : x \leq e ^ y\}$, $F_Y(y) = \Pr{X \leq e ^ y} = F_X(e ^ y) = 1 - e ^ {-e ^ y}$, $f_Y(y) = F_Y'(y) = e ^ y e ^ {-e ^ y}$. \\	
-作业: 令 $X, Y \sim \mathrm{Uniform} (0, 1)$ 且独立, 求 $X - Y$ 的 PDF. 令 $Z = X - Y$, 
+{\bfseries 例} $f_X(x) = e ^ {-x} (x > 0)$, $F_X(x) = \int_{0}^{x} f_X(s)\d s = 1 - e ^ {-x}$. 令 $Y = r(X) = \log X, A_y = \{x : x \leq e ^ y\}$, $F_Y(y) = \Pr{X \leq e ^ y} = F_X(e ^ y) = 1 - e ^ {-e ^ y}$, $f_Y(y) = F_Y'(y) = e ^ y e ^ {-e ^ y}$. \\	
+{\bfseries 例}令 $X, Y \sim \mathrm{Uniform} (0, 1)$ 且独立, 求 $X - Y$ 的 PDF. 令 $Z = X - Y$, 
 $ F_{Z} (z) = \int_{x + y \leq z} f(x, y) \d x \d y =
 \begin{cases}
 0 & \text{if $z \leq -1$} \\
@@ -248,13 +249,13 @@ $k$ 阶矩 $E(X^k)$, 中心矩 $E((X - \mu)^k)$.  \\
 $\sigma ^ 2 = V(X) = E((X - \mu)^2) = E(X^2) - E(X)^2$ \\
 样本 $\overline X = 1/n \sum X_i, S_n^2 = 1/(n-1) \sum (X_i - \overline X)^2$ \\
 定理: $E(\overline X_n) = \mu, V(\overline X_n) = \sigma ^ 2 / n, E(S_n^2) = \sigma^2.$
-$Cov(X, Y) = E((X - \mu_X)(Y - \mu_Y))=E(XY)-E(X)E(Y)$, 不相关: $Cov(X_i, X_j) = 0$, 此时两者方差可加, 但不代表独立（例: $X=U(-1, 1), Y = |X|$）\\
+$Cov(X, Y) = E((X - \mu_X)(Y - \mu_Y))=E(XY)-E(X)E(Y)$, 不相关: $Cov(X_i, X_j) = 0$, 此时两者方差可加, 但不代表独立（{\bfseries 例} $X=U(-1, 1), Y = |X|$）\\
 
 \newcolumn
 
 矩母函数 $M_X(t) = E(e^{tX})$. 如果 $Y = aX + b$, 则 $M_Y(t) = e^{bt} M_X(at)$. 
 意义: $E(X ^ n) = M_X^{(n)} (0)$. \\
-例: $X\sim \mathrm{Exp}(\lambda), E(X) = M_X'(0) = {\lambda \over (\lambda - t) ^ 2} |_{t = 0} = \frac 1 \lambda$, $E(X^2) = M_X^{(2)}(0)  = \frac {2 \lambda} {(\lambda - t) ^ 3} |_{t = 0} = \frac {2} {\lambda^2}.$
+{\bfseries 例} $X\sim \mathrm{Exp}(\lambda), E(X) = M_X'(0) = {\lambda \over (\lambda - t) ^ 2} |_{t = 0} = \frac 1 \lambda$, $E(X^2) = M_X^{(2)}(0)  = \frac {2 \lambda} {(\lambda - t) ^ 3} |_{t = 0} = \frac {2} {\lambda^2}.$
 \section{不等式}
 Markov $\Pr{X \geq a} \leq \frac {\E{X}} {a}, X \geq 0, a > 0$ \\
 Chebyshev $\Pr{|X - \E{X}| \geq a} \leq \frac {\Var{X}} {a^2}$ \\
@@ -262,7 +263,7 @@ Mill $Z \sim N(0, 1)$, $\Pr{|Z| \geq t} \leq \frac 2 {\sqrt{2\pi}} \frac {e^{-t^
 Hoeffding : \\
 $\Pr{|X - \mu| \geq t} \leq 2 \exp \left( - \frac {2t^2} {\sum_{i = 1}^n(b_i - a_i)^2}\right)$ \\
 $\E{e^{\alpha X}} \leq \exp \left(\frac {a^2(b - a)^2} {8}\right), \E{X} = 0, \alpha \in \mathbb R$ \\
-例: $X \sim \mathrm{Bernoulli}(n, p)$,\\
+{\bfseries 例} $X \sim \mathrm{Bernoulli}(n, p)$,\\
 $P(|\overline X_n - p| > \epsilon) \leq 2 \exp \left( - {2n\epsilon^2} \right)$ \\
 % Chernoff $\Pr{X \geq (1 + \delta)\mu} \leq \left( \frac {e ^ {\delta}}  {(1 + \delta)^{1 + \delta}}\right)^\mu (\delta > -1)$ \\
 % $\Pr{X \geq (1 + \delta)\mu} \leq \exp \left( - \frac {\delta ^ 2} {3} \mu \right)$\\
@@ -306,7 +307,7 @@ MSE $ = E_\theta(\hat \theta_n - \theta)^2 = \mathrm{bias}^2 + \mathrm{se}^2$. \
 置信集: 置信区间 $C_n = (a_n, b_n)$, $P_\theta(\theta \in C_n) = 1 - \alpha$. \\
 注: 置信区间是随机区间, 意思是给定若干组样本, 每组得到的置信区间覆盖真实参数的概率为 $1 - \alpha$. \\
 基于正态的置信区间: $\hat \theta_n \pm z_{\alpha/2} \mathrm{se}(\hat \theta_n)$. \\
-例: $\{X_n\} \sim \mathrm{Bernoulli}(p)$, 
+{\bfseries 例} $\{X_n\} \sim \mathrm{Bernoulli}(p)$, 
 由 Chebyshev $P(|\overline X_n - p| \geq \epsilon) \leq 2 \exp(-2n\varepsilon^2)$, 令 $\alpha= 2\exp(-2n\varepsilon) \Rightarrow \varepsilon ^ 2 = \log(2/a)/(2n)$, 因此 $C_n = (\overline X_n - \sqrt{\log(2/a)/(2n)}, \overline X_n + \sqrt{\log(2/a)/(2n)})$;
 由渐进正态, $C_n =(\overline X_n - z_{\alpha/2} \sqrt{\overline X_n(1 - \overline X_n)/n}, \overline X_n + z_{\alpha/2} \sqrt{\overline X_n(1 - \overline X_n)/n})$. \\
 
@@ -328,7 +329,7 @@ $F \in (0,$ $1): \sqrt{n} (\hat F_n(x) - F(x)) \rightsquigarrow N(0, F(x)(1 - F(
 线性泛函: $T(F) = \int_{-\infty}^{+\infty} r(x) \d F(x)$, \\
 满足 $T(aF + bG) = aT(F) + bT(G)$, 嵌入式估计量: $T(\hat F_n) = \int_{-\infty}^{+\infty} r(x) \d \hat F_n(x)$ $= \frac{1}{n} \sum_{i = 1}^n r(X_i)$,\\
 近似 $1-\alpha$ 置信区间为 $T(\hat F_n) \pm z_{\alpha/2} \hat {\mathrm{se}}$.\\
-例: $\hat \mu = \overline X_n, \hat \sigma^2 = \frac{1}{n} \sum_{i = 1}^n X_i^2 - \overline X_n^2$. \\
+{\bfseries 例} $\hat \mu = \overline X_n, \hat \sigma^2 = \frac{1}{n} \sum_{i = 1}^n X_i^2 - \overline X_n^2$. \\
 \section{Bootstrap 方法}
 从 $\hat F_n$ 中生成 $X_1^*, \dots, X_n^*$ 计算统计量, 重复 $B$ 次. \\
 方差估计:  $V_{\mathrm{boot}} = \frac{1}{B} \sum_{b = 1}^B (T_{n,b}^* - \overline T^*)^2$\\
@@ -360,22 +361,21 @@ Fisher $I_n(\theta) = V_\theta\left( \sum s(X_i; \theta) \right) = \sum V_\theta
 1. $\mathrm{se} \approx \sqrt{1 / I_n(\theta)}, \frac{\hat \theta_n - \theta}{\mathrm{se}} \rightsquigarrow N(0, 1)$, \\
 2. $\hat {\mathrm{se}} = \sqrt{1 / I_n(\hat \theta_n)}, \frac{\hat \theta_n - \theta}{\hat {\mathrm{se}}} \rightsquigarrow N(0, 1)$\\
 3. $C_n = \hat \theta_n \pm z_{\alpha/2} \hat {\mathrm{se}}, P_\theta(\theta \in C_n) \rightarrow 1 - \alpha$\\
-例: $N(\theta, \sigma ^ 2)$,
+{\bfseries 例} $N(\theta, \sigma ^ 2)$,
 $f(X; \theta) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left( - \frac{(X - \theta)^2}{2\sigma^2} \right)$,\\
 记分函数 $s(X; \theta) = \frac{\partial \log f(X; \theta)}{\partial \theta} = \frac{X - \theta}{\sigma^2}$,
 $I_n(\theta) = $ $n E(s^2(X; \theta)) = -n E_\theta(s'(X; \theta)) = -n E_\theta(-\frac 1 {\sigma^2}) = \frac {n} {\sigma^2}$,
 $\hat {\mathrm{se}} = \sqrt{\frac{\sigma^2}{n}}$, 故 $\overline X$ 近似服从 $N(\theta, \sigma^2 / n)$. \\
 极大似然估计 Delta 方法: 如果 $\tau = g(\theta), g'(\theta) \neq 0$, 则 $\frac {\hat \tau_n - \tau} {\hat {\mathrm{se}}(\hat \tau_n)} \rightsquigarrow N(0, 1)$,
 其中 $\hat \tau_n = g(\hat \theta_n)$, 且 $\hat {\mathrm{se}}(\hat \tau_n) = \sqrt{V(\hat \tau_n)} = |g'(\hat \theta_n)| \hat {\mathrm{se}}(\hat \theta_n)$. \\
-
-例: $\mathrm{Poisson}(\lambda)$, 矩估计: $\hat \lambda = \overline X_n$,
+{\bfseries 例} $\mathrm{Poisson}(\lambda)$, 矩估计: $\hat \lambda = \overline X_n$,
 $f(X; \lambda) = \frac{\lambda^x}{x!} e^{-\lambda}$,
 $\mathcal{L}_n = \prod \frac{\lambda^{X_i}e^{-\lambda}}{(X_i)!}$, $\ell_n = \sum (X_i \log \lambda - \lambda - \log (X_i)!$), $\partial = 0$ 得 $\overline X$.
 $s(X; \lambda) = \frac{\partial \log f(X; \lambda)}{\partial \lambda} = \frac{X - \lambda}{\lambda}$,
 $I_n(\lambda) = n I(\lambda) = n E(s^2(X; \lambda)) = \frac{n}{\lambda}$, $\hat {\mathrm{se}} = \sqrt{\frac{\lambda}{n}}$, 
 $\overline X$ 近似服从 $N(\lambda, \lambda / n)$,
 $1 - \alpha$ 置信区间为 $\hat \lambda \pm z_{\alpha/2} \sqrt{\frac {\hat \lambda} {n}}$. \\
-例: $N(\theta, 1)$, $Y_i = I(X_i > 0)$,$\psi = P(Y_1 = 1)$.
+{\bfseries 例} $N(\theta, 1)$, $Y_i = I(X_i > 0)$,$\psi = P(Y_1 = 1)$.
 $\mathcal{L}_n(\theta) = \prod \frac{1}{\sqrt{2\pi}} e^{-\frac{(X_i - \theta)^2}{2}}$,
 $\ell_n(\theta) = -\frac{n}{2} \log 2\pi - \frac{1}{2} \sum (X_i - \theta)^2$,
 $\partial \ell_n(\theta) / \partial \theta = \sum (x_i - \theta), = 0 : \hat \theta = \overline X$.
@@ -385,7 +385,7 @@ $\psi = \Phi(\theta)$, $\hat \psi = \Phi(\hat \theta) = \Phi(\overline X)$,
 $\hat{\mathrm{se}}(\hat \psi) = |\Phi'(\hat \theta)| \hat{\mathrm{se}}(\hat \theta) = \phi(\hat \theta) \hat{\mathrm{se}}(\hat \theta)$.\\
 $\tilde \psi = 1/n \sum Y = E[\overline Y] \xrightarrow{P} E[Y] = \psi$, 渐进效率 $V(\tilde \psi) / V(\hat \psi) = \psi (1 - \psi) / \phi(\theta) = \Phi(\theta) (1 - \Phi(\theta)) / \phi(\theta)$. 
 非正态: 由 LLN $\hat \psi \xrightarrow{P} \Phi(\mu)$, $F_X(0) \neq 1 - \Phi(\mu)$ 都不相合. \\
-例: $X_1 \sim \mathrm{Binomial}(n_1, p_1), X_2 \sim \mathrm{Binomial}(n_2, p_2), \psi = p_1 - p_2$,
+{\bfseries 例} $X_1 \sim \mathrm{Binomial}(n_1, p_1), X_2 \sim \mathrm{Binomial}(n_2, p_2), \psi = p_1 - p_2$,
 $f(X_i; p_i) = \binom{n_i}{X_i} p_i^{X_i} (1 - p_i)^{n_i - X_i}$,
 $\frac {\partial} {\partial p_i} s(X_i; p_i) = \frac {X_i} {p_i} + \frac {X_i} {1 - p_i} = \frac {X_i - n p_i } {p_i (1 - p_i)}$
 $\hat p_i = X_i / n_i, \hat \psi = \hat p_1 - \hat p_2 = X_1/n_1 - X_2 / n_2$.
@@ -402,7 +402,7 @@ $J_n(\mathbf{\theta}) = I_n^{-1}(\mathbf{\theta})$\\
 多参数 Delta 方法: $\nabla g = (\frac{\partial g}{\partial \theta_1}, \dots)^T$ 在 $\hat \theta_n$ 处不为 $0$, 令 $\hat \tau_n = g(\hat \theta_n)$, 则
 $\frac {\hat \tau_n - \tau} {\sqrt{\hat \tau_n^T J_n(\hat \theta_n) \hat \tau_n}} \rightsquigarrow N(0, 1)$,
 其中 $\hat {\mathrm{se}}(\hat \tau_n) = \sqrt{(\nabla g |_{\theta = \hat \theta_n}^T) J_n(\hat \theta_n) (\nabla g |_{\theta = \hat \theta_n})}$. \\
-例: $X_1\dots X_n \sim N(\mu, \sigma^2)$, $\psi = g(\mu, \sigma) = \sigma / \mu$,
+{\bfseries 例} $X_1\dots X_n \sim N(\mu, \sigma^2)$, $\psi = g(\mu, \sigma) = \sigma / \mu$,
 $(\mu, \sigma ^ 2)$ MLE: $(\overline X, S^2)$,\begin{scriptsize}
 $I_n(\mu, \sigma^2) = \begin{pmatrix}
 	n / \sigma^2 & 0 \\
@@ -424,7 +424,7 @@ $\hat {\mathrm{se}}(\hat \tau) = \frac 1 {\sqrt n} \sqrt{\frac {\hat \sigma ^ 4}
 容度 $\leq \alpha$ 称检验水平为 $\alpha$. 简单 $\theta = \theta_0$ 复合 $\theta \geq \theta_0$ \\
 双边 $H_0 : \theta = \theta_0$ vs \dots
 单边 $H_0 : \theta \geq \theta_0$ vs \dots\\
-例: $X_1 \dots X_n \sim N(\mu, \sigma^2)$, 检验 $H_0 : \mu = \mu_0$ vs $H_1 : \mu \neq \mu_0$,
+{\bfseries 例} $X_1 \dots X_n \sim N(\mu, \sigma^2)$, 检验 $H_0 : \mu = \mu_0$ vs $H_1 : \mu \neq \mu_0$,
 检验统计量 $T_n = \sqrt{n} \frac{|\overline X_n - \mu_0|}{S_n}$, \\
 拒绝域 $\{T_n > z_{\alpha/2}\}$,
 势函数 $\beta(\mu) = P_\mu(T_n > z_{\alpha/2})$\\
@@ -434,12 +434,11 @@ $\hat {\mathrm{se}}(\hat \tau) = \frac 1 {\sqrt n} \sqrt{\frac {\hat \sigma ^ 4}
 检验水平 $\alpha = \sup_{\mu \leq \mu_0} \beta(\mu) = 1 - \Phi(\sqrt{n} \frac {c - \mu_0} {\sigma})$,
 设定显著性水平 $\alpha$, $c=\mu_0 + \frac{\sigma}{\sqrt{n}} z_{\alpha / 2}$. \\
 Wald 检验: $H_0: \theta = \theta_0$ vs $H_1: \theta \neq \theta_0$,
-若 $\hat \theta$ 渐进正态, $W = \frac{\hat \theta - \theta_0}{\hat {\mathrm{se}}(\hat \theta)}$, 当 $|W| > z_{\alpha / 2}$ 时拒绝 $H_0$. 势函数: 
-
+若 $\hat \theta$ 渐进正态, $W = \frac{\hat \theta - \theta_0}{\hat {\mathrm{se}}(\hat \theta)}$, 当 $|W| > z_{\alpha / 2}$ 时拒绝 $H_0$. 势函数: \\
 $\beta(\theta_*)\approx
 1 - \Phi(z_{\alpha / 2} + \frac{\theta_0 - \theta_*}{\hat {\mathrm{se}}(\hat \theta)})
 +\Phi(-z_{\alpha / 2} + \frac{\theta_0 - \theta_*}{\hat {\mathrm{se}}(\hat \theta)})$\\
-例: 给定样本 $\{X_m\}, \{Y_n\}$, 检验均值是否相等. \\
+{\bfseries 例} 给定样本 $\{X_m\}, \{Y_n\}$, 检验均值是否相等. \\
 $H_0: \mu_X - \mu_Y = 0$ vs $H_1: \mu_X - \mu_Y \neq 0$, \\
 $V(\hat \theta) = V(\overline X - \overline Y) = \frac{\sigma_X^2}{m} + \frac{\sigma_Y^2}{n}$, 
 $\hat {\mathrm{se}} = \sqrt{\frac{S_X^2}{m} + \frac{S_Y^2}{n}}$, \\
@@ -451,11 +450,7 @@ $H_0: \mu_X = \mu_Y$ vs $H_1: \mu_X \neq \mu_Y$, 构造 $\theta = \mu_1 - \mu_2$
 方差: $V(\hat \theta) =  \sigma^2/n$, 其中 $\sigma$ 是 $X_i - Y_i$ 总体标准差, 用样本标准差估计
 $\hat{\mathrm{se}} = \sqrt{S^2/n}$, 拒绝域为 $|\overline X - \overline Y| > z_{\alpha / 2} \hat {\mathrm{se}}$. \\
 Wald 置信区间: $C = \left(\hat \theta - z_{\alpha / 2} \hat {\mathrm{se}}(\hat \theta), \hat \theta + z_{\alpha / 2} \hat {\mathrm{se}}(\hat \theta)\right)$, \\
-p 值: $\inf \{\alpha : \theta_0 \in C\}$, 可以拒绝 $H_0$ 的最小检验水平. \\
-例: 计算出了 $W = \left| \frac{\overline X - \overline Y}{\hat {\mathrm{se}}}\right|$, p 值: $P(|Z| > W)$\begin{tiny}($Z\sim N(0, 1)$)\end{tiny} \\
-
-\newcolumn
-
+p 值: $\inf \{\alpha : \theta_0 \in C\}$, 拒绝 $H_0$ 的最小检验水平, 拒绝的强弱 \\
 Pearson $\chi^2$ 统计量: $X= (X_1, \dots, X_k)$ 服从多项分布 $M(n, p=(p_1, \dots, p_k))$,
 检验 $H_{0/1}: p ?= p_0$. \\
 检验统计量 $\chi^2 = \sum_{i = 1}^k \frac{(X_i - np_{0i})^2}{np_{0i}} = \sum_{i=1}^k \frac{(X_j - E_j)^2}{E_j}$.
@@ -466,9 +461,54 @@ p 值为 $P(\chi^2(k - 1) > T)$. \\
 $\hat \theta_0$ 表示限制 $\Theta_0$.
 $\lambda \rightsquigarrow \chi^2_{\dim \Theta - \dim \Theta_0}$, 拒绝域 $\{\lambda > \chi^2_{\alpha}(\dim \Theta - \dim \Theta_0)\}$,
 p 值 $P(\chi^2(\dots) > \lambda)$. \\
-例: 豌豆实验自由度为 $3-0$ 而非 $4$, 因为概率和为 $1$. \\
+{\bfseries 例} 豌豆实验自由度为 $3-0$ 而非 $4$, 因为概率和为 $1$. \\
 多重假设检验: Bonferroni: $\alpha / m$ (Union bound).
 BH: 排序后 $p_i \leq \frac{i \alpha}{m C_m} $, $C_m$ 不独立 $\sum_{i = 1}^m \frac{1}{i}$, 独立 $1$. \\
+{\bfseries 例} 计算出了 $W = \left| \frac{\overline X - \overline Y}{\hat {\mathrm{se}}}\right|$, p 值: $P(|Z| > W)$\begin{tiny}($Z\sim N(0, 1)$)\end{tiny} \\
+{\bfseries 例} $\mathrm{Poisson}(\lambda)$, $H_0 : \lambda = \lambda_0$ vs $\neq$.
+$\hat \lambda = \sum X_n / n, \Var{\hat \lambda} = \lambda / n, \rm{se}(\hat \lambda) = \sqrt{\lambda / n}$,
+$ W = \sqrt{n} \frac{\hat \lambda - \lambda_0} {\sqrt{\lambda_0}},$ $\mathcal A = \{|W| > z_{\alpha / 2}\}$
+
+\newcolumn
+{\bfseries 例} $N(\theta, 1)$, $H_0 : \theta = 0$ vs $H_1 : \theta = 1$.
+拒绝域 $\{\overline X > c\}$, 显著性水平 $\alpha$,
+$ \frac{\overline X - \theta}{\sqrt{1/n}} \sim N(0, 1) \Rightarrow 
+\Pr{\frac{T(x^n) - 0}{\sqrt{1/n}} > \frac {c - 0} {\sqrt{1/n}}} = 1 - \Phi(c \sqrt {n})$,
+$c = \Phi^{-1}(1 - \alpha / 2) / \sqrt{n}$,
+$\beta(\theta) = P(\frac{T(x^n) - \theta}{\sqrt{1/n}} > \frac {c - \theta} {\sqrt{1/n}}) = 1 - \Phi((c - \theta) \sqrt {n})$
+$H_1$ 下势函数  $\beta(1) =  1 - \Phi((c - 1) \sqrt {n})$.\\
+{\bfseries 例} $N(\mu, \sigma^2)$, $H_0 : \mu = \mu_0$ vs $\neq$. 似然比检验
+$\ell_n(\mu, \sigma) = -n \log \sigma - \frac{1}{2\sigma^2} \sum_{i} (X_i - \mu)^2 + C$,
+$
+\lambda = 2 \ell(\hat \mu, \sigma) - 2 \ell(\mu_0, \sigma)
+= \frac {1}{\sigma^2} \left(n (\mu_0 ^ 2 - \hat \mu ^ 2) - 2 (\mu_0 - \hat \mu) \cdot n \hat \mu \right)
+= \frac{n (\hat \mu - \mu_0)^2} {\sigma^2}
+$, Wald $W = \sqrt{n} \frac{\hat \mu - \mu_0} {\sigma}$, $\lambda = \sqrt{W}$.
+检验 $H_1 : \sigma = \sigma_0$ vs $\neq$,
+$\lambda = 2 \ell(\mu, \hat \sigma) - 2 \ell(\mu, \sigma_0) =  2n (\log \sigma_0 - \log \hat \sigma) + \frac {n (\hat \sigma ^ 2 - \sigma_0 ^ 2)}{\sigma_0^2}$,
+Wald $W = \sqrt{n} \frac{\hat \sigma - \sigma_0} {\sqrt{1 / I(\hat \sigma)}} = 
+\sqrt{2n} \frac {\hat \sigma - \sigma_0 } {\hat \sigma}$
+{\bfseries 例} $\mathrm{Binomial}(n, p)$, $H_0 : p = p_0$ vs $\neq$,
+令 $X = \sum X_i$, ${\cal L}(p) = {n \choose X} p ^ X (1 - p) ^ {n - X}$,
+$\ell(p) = \log {n \choose X} + X \log p + (n - X) \log (1 - p)$,
+$\lambda = 2 \ell{\hat p} - 2 \ell{p_0} = 2 X (\log \hat p - \log p_0) + 2 (n - X) (\log (1 - \hat p) - \log (1 - p_0))$
+Wald $ W = \sqrt{n} \frac {\hat p - p_0} {\sqrt {\hat p (1 - \hat p)}}$\\
+{\bfseries 例} 袋子摸红蓝球, $H_0 : p = 0.5$ vs $H_1 : p = 0.7$, $X_i = I(i \text{蓝})$
+六次抽样 $Y=\sum_{i=1}^6 X_i \sim \mathrm{binom}(6,p)$, $Y$ 的 pmf $f(y|p) = {6 \choose y} p^y (1 - p)^{6 - y}$,
+基于 $H_0$ 和 $H_1$ 的似然比为 $\Lambda(y) = \frac{f(y|0.7)}{f(y|0.5)} = \frac{0.7^y 0.3^{6 - y}}{0.5^y 0.5^{6 - y}} = 1.4^y 0.3^6$,
+结果如表
+\begin{tiny}
+\begin{tabular}{c|lllllll}
+	$y$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+	\hline
+	$f(y | 0.5)$ & 0.016 & 0.094 & 0.234 & 0.312 & 0.234 & 0.094 & 0.016 \\
+	$f(y | 0.7)$ & 0.001 & 0.010 & 0.060 & 0.185 & 0.324 & 0.303 & 0.117 \\
+	$\Lambda(y)$ & 16.0 & 9.4 & 3.9 & 1.686 & 0.722 & 0.310 & 0.136 \\
+\end{tabular}
+\end{tiny}
+$\Lambda(0) = 16$ vs $\Lambda(6) = 0.136$, 因此小的 $\Lambda$ 拒绝 $H_0$,
+拒绝域为 $C=\{y | \Lambda(y) \leq k(\alpha)\}$. 此处 $k(0.016) = 0.136, k(0.11 = 0.094+0.016)=0.310$.
+
 \setcounter{section}{12}
 \section{线性回归和 Logistic 回归}
 简单线性回归: $Y = \beta_0 + \beta_1 X + \epsilon$, $\epsilon : E=0, V=\sigma^2$,
